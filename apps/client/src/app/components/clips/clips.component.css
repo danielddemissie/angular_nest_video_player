@@ -47,7 +47,12 @@
 
 .img-desc p {
   line-height: 0.7;
+}
+
+.loading {
+  align-self: flex-end;
   font-family: 'Montserrat', serif;
+  text-align: right;
 }
 
 @media (max-width: 768px) {

@@ -6,6 +6,11 @@ export interface ApiClipResponse {
   clips: Clip[];
 }
 
+export interface ApiClipOtions {
+  page: number;
+  limit: number;
+}
+
 export const ApiURL = '/api';
 export const ApiClipURL = '/api/clips';
 export const ClipsURL = 'http://www.myactionreplay.com/api/clips';

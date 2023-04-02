@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClipService } from '../../services/clip.service';
+import { Clip } from '@pushit/api-interface';
 
 @Component({
   selector: 'pushit-clips',
@@ -7,18 +8,40 @@ import { ClipService } from '../../services/clip.service';
   styleUrls: ['./clips.component.css'],
 })
 export class ClipsComponent implements OnInit {
-  videos: any = [];
+  videos: Clip[] = [];
   selectedVid = this.videos[0];
+  clipId: string = '';
+  page = 1;
+  limit = 10;
+  option = {
+    root: null,
+    rootMargin: '100px',
+    threshold: 0.4,
+  };
   constructor(private clipService: ClipService) {}
 
   ngOnInit(): void {
-    this.clipService.getClipList().subscribe((data) => {
-      this.videos = data.clips;
-      this.selectedVid = this.videos[0];
-    });
+    const observable = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this.clipService
+            .getClipList({
+              page: this.page,
+              limit: this.limit,
+            })
+            .subscribe((data) => {
+              this.videos = [...this.videos, ...data.clips];
+              this.selectedVid = this.videos[0];
+            });
+          this.page++;
+        }
+      });
+    }, this.option);
+
+    observable.observe(document.querySelector('.loading') as Element);
   }
 
-  handleClick(video: any): void {
+  handleClick(video: Clip): void {
     this.selectedVid = video;
   }
 }

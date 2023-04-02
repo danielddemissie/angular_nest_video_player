@@ -5,6 +5,7 @@ import {
   APIResponse,
   ApiURL,
   ApiClipURL,
+  ApiClipOtions,
   ApiClipResponse,
 } from '@pushit/api-interface';
 
@@ -17,7 +18,12 @@ export class ClipService {
     return this.httpClient.get<APIResponse>(ApiURL);
   }
 
-  getClipList(): Observable<ApiClipResponse> {
-    return this.httpClient.get<ApiClipResponse>(ApiClipURL);
+  getClipList(args: ApiClipOtions): Observable<ApiClipResponse> {
+    return this.httpClient.get<ApiClipResponse>(ApiClipURL, {
+      params: {
+        limit: args.limit,
+        page: args.page,
+      },
+    });
   }
 }

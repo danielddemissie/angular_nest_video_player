@@ -1,21 +1,24 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Query, Param } from '@nestjs/common';
 import { ClipService } from './service/clip/clip.service';
 
-@Controller()
+@Controller('/clips')
 export class AppController {
-  constructor(
-    private readonly appService: AppService,
-    private readonly clipService: ClipService
-  ) {}
+  constructor(private readonly clipService: ClipService) {}
 
-  @Get()
-  getData() {
-    return this.appService.getData();
-  }
-
-  @Get('clips')
-  getClips() {
-    return this.clipService.getClips();
+  @Get(':clipId?')
+  getClips(
+    @Query('page') page: string,
+    @Query('limit') limit: string,
+    @Query('sortBy') sortBy: 'id' | 'date' = 'date',
+    @Query('sortDirection') sortDirection: 'asc' | 'desc' = 'desc',
+    @Param('clipId') clipId: string
+  ) {
+    return this.clipService.getClips(
+      page,
+      limit,
+      sortBy,
+      sortDirection,
+      clipId
+    );
   }
 }
