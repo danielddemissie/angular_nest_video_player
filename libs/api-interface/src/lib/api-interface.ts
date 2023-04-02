@@ -6,7 +6,11 @@ export interface ApiClipResponse {
   clips: Clip[];
 }
 
-export interface ApiClipOptions {}
+export interface ApiClipOptions {
+  clipId?: string;
+  page?: number;
+  limit?: number;
+}
 
 export const ApiURL = '/api';
 export const ApiClipURL = '/api/clips';

@@ -1,7 +1,15 @@
 <main>
-  <div class="v-player-wrapper">
+  <div *ngIf="!videos.length" class="loading">
+    <p>Loading...</p>
+  </div>
+  <div
+    [ngClass]="{
+      'v-player-wrapper': videos.length > 0,
+      hidden: videos.length === 0
+    }"
+  >
     <div class="v-player-current" *ngIf="selectedVid">
-      <video autoplay controls [src]="selectedVid.clipURL">
+      <video autoplay controls muted [src]="selectedVid.clipURL">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -17,7 +25,7 @@
           <p>{{ video.clipDate }}</p>
         </div>
       </div>
-      <div class="loading">Loading...</div>
+      <div class="loadmore">Loading More...</div>
     </div>
   </div>
 </main>

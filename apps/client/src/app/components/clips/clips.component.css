@@ -15,11 +15,11 @@
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 150px);
 }
 
 .v-player-list {
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 150px);
   overflow-x: hidden;
   overflow-y: auto;
   display: grid;
@@ -50,9 +50,24 @@
 }
 
 .loading {
-  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 150px);
   font-family: 'Montserrat', serif;
-  text-align: right;
+  font-weight: 100;
+  font-size: 1.5rem;
+}
+
+.loadmore {
+  grid-area: span 1 / span 2;
+  justify-self: center;
+  font-family: 'Montserrat', serif;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @media (max-width: 768px) {
@@ -66,9 +81,10 @@
     height: auto;
     object-fit: cover;
     border-radius: 10px;
+    height: 70%;
   }
 
   .v-player-list {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1.1fr);
   }
 }

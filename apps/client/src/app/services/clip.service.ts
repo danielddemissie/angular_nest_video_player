@@ -18,7 +18,17 @@ export class ClipService {
     return this.httpClient.get<APIResponse>(ApiURL);
   }
 
-  getClipList(args?: ApiClipOptions): Observable<ApiClipResponse> {
-    return this.httpClient.get<ApiClipResponse>(ApiClipURL, {});
+  getClipList(
+    page: number = 1,
+    limit: number = 10,
+    clipId: string = ''
+  ): Observable<ApiClipResponse> {
+    const params: ApiClipOptions = {};
+    return this.httpClient.get<ApiClipResponse>(`${ApiClipURL}/${clipId}`, {
+      params: {
+        page: page,
+        limit: limit,
+      },
+    });
   }
 }
