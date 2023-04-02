@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { APIResponse } from '@pushit/api-interface';
 
 @Injectable()
 export class AppService {
-  getData(): { message: string } {
+  getData(): APIResponse {
     return { message: 'Hello API' };
   }
 }
