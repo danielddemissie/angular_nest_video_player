@@ -9,30 +9,62 @@ export class ClipService {
     limit: string,
     sortBy: 'id' | 'date' = 'date',
     sortDirection: 'asc' | 'desc' = 'desc',
-    clipId: string
+    clipId?: string
   ): Promise<ApiClipResponse> {
     try {
-      const params = new URLSearchParams({
+      const data = new URLSearchParams({
         marAuth: '5344333591ebe3c10594e1abf146b309',
-        sessionID: '399003',
-        clipId,
       });
 
-      if (clipId) params.append('clipId', clipId);
-      if (page) params.append('page', page);
-      if (limit) params.append('limit', limit);
-      if (sortBy) params.append('sortBy', sortBy);
-      if (sortDirection) params.append('sortDirection', sortDirection);
+      if (clipId) data.append('clipId', clipId);
+      if (page) data.append('page', page);
+      if (limit) data.append('limit', limit);
+      if (sortBy) data.append('sortBy', sortBy);
+      if (sortDirection) data.append('sortDirection', sortDirection);
 
-      const response = await axios.post(ClipsURL, {
+      const response = await axios.post(ClipsURL, data, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        params,
       });
-      return { clips: response.data.clips };
+      return this.formatClips(response.data, sortBy, sortDirection);
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  formatClips(
+    response: ApiClipResponse,
+    sortBy: 'id' | 'date' = 'date',
+    sortDirection: 'asc' | 'desc' = 'desc'
+  ): ApiClipResponse {
+    const formattedClips = response.clips;
+    if (sortBy === 'date') {
+      if (sortDirection === 'asc') {
+        formattedClips.sort((a, b) => {
+          return (
+            new Date(a.clipDate).getTime() - new Date(b.clipDate).getTime()
+          );
+        });
+      } else {
+        formattedClips.sort((a, b) => {
+          return (
+            new Date(b.clipDate).getTime() - new Date(a.clipDate).getTime()
+          );
+        });
+      }
+    } else {
+      if (sortDirection === 'asc') {
+        formattedClips.sort((a, b) => {
+          return a.clipId - b.clipId;
+        });
+      } else {
+        formattedClips.sort((a, b) => {
+          return b.clipId - a.clipId;
+        });
+      }
+    }
+
+    return { clips: formattedClips };
   }
 }
