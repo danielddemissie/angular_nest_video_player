@@ -21,18 +21,14 @@ export class ClipsComponent implements OnInit {
   constructor(private clipService: ClipService) {}
 
   ngOnInit(): void {
+    this.clipId = window.location.href.split('/')[4];
     const observable = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          this.clipService
-            .getClipList({
-              page: this.page,
-              limit: this.limit,
-            })
-            .subscribe((data) => {
-              this.videos = [...this.videos, ...data.clips];
-              this.selectedVid = this.videos[0];
-            });
+          this.clipService.getClipList().subscribe((data) => {
+            this.videos = [...this.videos, ...data.clips];
+            this.selectedVid = this.videos[0];
+          });
           this.page++;
         }
       });
