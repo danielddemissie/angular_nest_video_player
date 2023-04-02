@@ -11,9 +11,13 @@ export class AppComponent implements OnInit {
   constructor(private clipService: ClipService) {}
 
   ngOnInit(): void {
-    this.clipService.getApiResponse().subscribe((date) => {
-      console.log(date);
-      this.message = date.message;
+    this.clipService.getApiResponse().subscribe((data) => {
+      console.log(data);
+      this.message = data.message;
+    });
+
+    this.clipService.getClipList().subscribe((data) => {
+      console.log(data);
     });
   }
 }
