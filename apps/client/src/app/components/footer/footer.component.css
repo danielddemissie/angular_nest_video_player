@@ -1,0 +1,10 @@
+.footer-title {
+  text-align: center;
+}
+
+.footer-content ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}

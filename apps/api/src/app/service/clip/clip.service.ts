@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { Injectable } from '@nestjs/common';
 import { ClipsURL, ApiClipResponse } from '@pushit/api-interface';
-import axios from 'axios';
 
 @Injectable()
 export class ClipService {

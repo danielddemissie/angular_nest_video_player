@@ -1,0 +1,22 @@
+<main>
+  <div class="v-player-wrapper">
+    <div class="v-player-current" *ngIf="selectedVid">
+      <video autoplay controls [src]="selectedVid.clipURL">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="v-player-list">
+      <div
+        (click)="handleClick(video)"
+        class="v-player-min"
+        *ngFor="let video of videos"
+      >
+        <img src="{{ video.clipThumb }}" alt="image thumb" />
+        <div class="img-desc">
+          <p>{{ video.clipId }}</p>
+          <p>{{ video.clipDate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
