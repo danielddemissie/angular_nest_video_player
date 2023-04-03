@@ -13,6 +13,7 @@ export class ClipsComponent implements OnInit {
   selectedVid = this.videos[0];
   page = 1;
   limit = 10;
+  clipId: string = '';
   private observerOption = {
     root: null,
     rootMargin: '100px',
@@ -24,11 +25,12 @@ export class ClipsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.clipId = this.route.snapshot.paramMap.get('clipId') as string;
     const observable = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.clipService
-            .getClipList(this.page, this.limit)
+            .getClipList(this.page, this.limit, this.clipId)
             .subscribe((data) => {
               this.videos = [...this.videos, ...data.clips];
               this.selectedVid = this.videos[0];

@@ -9,6 +9,12 @@
 .v-player-current {
   width: 100%;
 }
+.cover-full {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr;
+}
 
 .v-player-current video {
   width: 100%;

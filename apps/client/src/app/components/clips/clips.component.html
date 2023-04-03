@@ -5,7 +5,8 @@
   <div
     [ngClass]="{
       'v-player-wrapper': videos.length > 0,
-      hidden: videos.length === 0
+      hidden: videos.length === 0,
+      'cover-full': clipId
     }"
   >
     <div class="v-player-current" *ngIf="selectedVid">
@@ -13,7 +14,7 @@
         Your browser does not support the video tag.
       </video>
     </div>
-    <div class="v-player-list">
+    <div [ngClass]="{ 'v-player-list': !clipId, hidden: clipId }">
       <div
         (click)="handleClick(video)"
         class="v-player-min"

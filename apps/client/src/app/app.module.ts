@@ -8,9 +8,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { Route, RouterModule } from '@angular/router';
 
 const routes: Route[] = [
-  { path: '', redirectTo: '/clips', pathMatch: 'prefix' },
-  { path: 'clips', component: AppComponent },
-  { path: 'clips/:clipId?', component: AppComponent },
+  { path: 'clips/:clipId', component: ClipsComponent, pathMatch: 'full' },
+  { path: 'clips', component: ClipsComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '/clips', pathMatch: 'prefix' },
 ];
 
 @NgModule({
