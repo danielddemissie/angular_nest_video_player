@@ -14,7 +14,7 @@
         Your browser does not support the video tag.
       </video>
     </div>
-    <div [ngClass]="{ 'v-player-list': !clipId, hidden: clipId }">
+    <div [ngClass]="{ 'v-player-list': !clipId, 'hide-me': clipId }">
       <div
         (click)="handleClick(video)"
         class="v-player-min"

@@ -26,11 +26,20 @@ export class ClipsComponent implements OnInit {
 
   ngOnInit(): void {
     this.clipId = this.route.snapshot.paramMap.get('clipId') as string;
+    if (this.clipId) {
+      this.clipService
+        .getClipList(this.page, this.limit, this.clipId)
+        .subscribe((data) => {
+          this.videos = data.clips;
+          this.selectedVid = this.videos[0];
+        });
+      return;
+    }
     const observable = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.clipService
-            .getClipList(this.page, this.limit, this.clipId)
+            .getClipList(this.page, this.limit)
             .subscribe((data) => {
               this.videos = [...this.videos, ...data.clips];
               this.selectedVid = this.videos[0];

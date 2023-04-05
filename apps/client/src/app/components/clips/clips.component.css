@@ -16,6 +16,10 @@
   grid-template-columns: 1fr;
 }
 
+.hide-me {
+  display: none;
+}
+
 .v-player-current video {
   width: 100%;
   height: 100%;
