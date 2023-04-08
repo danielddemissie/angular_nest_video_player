@@ -10,7 +10,7 @@
     }"
   >
     <div class="v-player-current" *ngIf="selectedVid">
-      <video autoplay controls muted [src]="selectedVid.clipURL">
+      <video [autoplay]="true" controls [src]="selectedVid.clipURL">
         Your browser does not support the video tag.
       </video>
       <div class="v-player-desc">
@@ -28,7 +28,7 @@
         class="v-player-min"
         *ngFor="let video of videos"
       >
-        <img src="{{ video.clipThumb }}" alt="image thumb" />
+        <video [autoplay]="true" [muted]="true" [src]="video.clipURL"></video>
         <div class="img-desc">
           <p>{{ video.clipId }}</p>
           <p>{{ video.clipDate }}</p>

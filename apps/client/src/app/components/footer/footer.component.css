@@ -12,17 +12,6 @@
   color: #fff;
 }
 
-.footer-content ul {
-  width: 300px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0;
-}
-
-.footer-content ul li {
-  list-style: none;
-  color: #0b7ba7;
-  text-align: center;
+.footer-content p {
+  color: #fff;
 }
