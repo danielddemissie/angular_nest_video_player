@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  background-color: #e0f7fa;
+}
+
 h2,
 p {
   font-family: 'Montserrat', serif;

@@ -13,6 +13,14 @@
       <video autoplay controls muted [src]="selectedVid.clipURL">
         Your browser does not support the video tag.
       </video>
+      <div class="v-player-desc">
+        <div>
+          <h2>{{ selectedVid.clipTitle }}</h2>
+        </div>
+        <div>
+          <p>{{ selectedVid.siteName }}</p>
+        </div>
+      </div>
     </div>
     <div [ngClass]="{ 'v-player-list': !clipId, 'hide-me': clipId }">
       <div

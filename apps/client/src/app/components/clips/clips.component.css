@@ -28,14 +28,20 @@
   height: calc(100vh - 150px);
 }
 
+.v-player-desc {
+  display: flex;
+  justify-content: space-between;
+}
+
 .v-player-list {
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 0px);
   overflow-x: hidden;
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   padding-right: 10px;
+  margin-bottom: 1rem;
 }
 
 .v-player-min img {

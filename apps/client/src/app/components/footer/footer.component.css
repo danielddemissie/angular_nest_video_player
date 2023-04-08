@@ -1,10 +1,28 @@
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  margin-top: 1rem;
+}
+
 .footer-title {
   text-align: center;
+  color: #fff;
 }
 
 .footer-content ul {
+  width: 300px;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
-  width: 100%;
+  padding: 0;
+}
+
+.footer-content ul li {
+  list-style: none;
+  color: #0b7ba7;
+  text-align: center;
 }
