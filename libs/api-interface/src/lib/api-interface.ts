@@ -14,7 +14,6 @@ export interface ApiClipOptions {
 
 export const ApiURL = '/api';
 export const ApiClipURL = '/api/clips';
-export const ClipsURL = 'http://www.myactionreplay.com/api/clips';
 
 export interface Clip {
   clipId: number;

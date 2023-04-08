@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { Injectable } from '@nestjs/common';
-import { ClipsURL, ApiClipResponse } from '@pushit/api-interface';
+import { ApiClipResponse } from '@pushit/api-interface';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ClipService {
+  constructor(private configService: ConfigService) {}
   async getClips(
     page: string,
     limit: string,
@@ -13,7 +15,7 @@ export class ClipService {
   ): Promise<ApiClipResponse> {
     try {
       const data = new URLSearchParams({
-        marAuth: process.env.MAR_AUTH,
+        marAuth: this.configService.get('config.marAuth'),
       });
 
       if (clipId) data.append('clipId', clipId);
@@ -22,11 +24,15 @@ export class ClipService {
       if (sortBy) data.append('sortBy', sortBy);
       if (sortDirection) data.append('sortDirection', sortDirection);
 
-      const response = await axios.post(ClipsURL, data, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
+      const response = await axios.post(
+        this.configService.get('config.apiUrl'),
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
       return this.formatClips(response.data, sortBy, sortDirection);
     } catch (error) {
       throw new Error(error);
