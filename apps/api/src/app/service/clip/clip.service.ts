@@ -13,7 +13,7 @@ export class ClipService {
   ): Promise<ApiClipResponse> {
     try {
       const data = new URLSearchParams({
-        marAuth: '5344333591ebe3c10594e1abf146b309',
+        marAuth: process.env.MAR_AUTH,
       });
 
       if (clipId) data.append('clipId', clipId);
